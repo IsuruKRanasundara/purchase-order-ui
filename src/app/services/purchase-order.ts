@@ -4,7 +4,7 @@ import { CreateOrderRequest, OrderResponse } from '../models/purchase-order';
 
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL', {
   providedIn: 'root',
-  factory: () => '/api',
+  factory: () => 'http://localhost:5259/api',
 });
 
 @Injectable({

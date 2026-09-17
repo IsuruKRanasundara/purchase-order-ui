@@ -8,7 +8,7 @@ Angular dashboard and purchase order form, based on the supplied assignment refe
 2. From this folder run `npm install` if dependencies are missing, then `npm start`.
 3. Open http://localhost:4200. The default route opens the dashboard.
 
-The Angular development proxy forwards `/api/**` to port 5259. Change `proxy.conf.json` if the backend port changes. In production, configure your web server to forward `/api` to the backend, or provide the `API_BASE_URL` injection token with the deployed API URL and configure CORS on the server. Configure SPA fallback to index.html for direct route navigation.
+The shared `API_BASE_URL` injection token in `src/app/services/purchase-order.ts` defaults to `http://localhost:5259/api`. All purchase order and dashboard requests go directly to that backend, without depending on the Angular development proxy. The backend must allow the frontend origin `http://localhost:4200` in its CORS configuration. For deployment, override `API_BASE_URL` with the deployed API URL (including `/api`). Configure SPA fallback to index.html for direct route navigation.
 
 ## Included
 
@@ -29,7 +29,7 @@ Tests cover component creation, dashboard endpoint integration and failure feedb
 
 ## API route mapping
 
-The development API base URL is `http://localhost:5259`. Angular calls the paths below through the configured development proxy:
+The development API base URL is `http://localhost:5259`. Angular calls the paths below directly on that host:
 
 | Service method | HTTP method | Path |
 | --- | --- | --- |

@@ -22,7 +22,7 @@ describe('Purchase API route contract', () => {
 
   it('lists orders using the documented pagination defaults', () => {
     orders.list().subscribe();
-    const request = http.expectOne('/api/purchase-orders?page=1&pageSize=20');
+    const request = http.expectOne('http://localhost:5259/api/purchase-orders?page=1&pageSize=20');
     expect(request.request.method).toBe('GET');
     expect(request.request.body).toBeNull();
     request.flush([]);
@@ -30,14 +30,14 @@ describe('Purchase API route contract', () => {
 
   it('passes custom pagination to the list endpoint', () => {
     orders.list(2, 10).subscribe();
-    const request = http.expectOne('/api/purchase-orders?page=2&pageSize=10');
+    const request = http.expectOne('http://localhost:5259/api/purchase-orders?page=2&pageSize=10');
     expect(request.request.method).toBe('GET');
     request.flush([]);
   });
 
   it('retrieves an order by ID without a request body', () => {
     orders.get(1).subscribe();
-    const request = http.expectOne('/api/purchase-orders/1');
+    const request = http.expectOne('http://localhost:5259/api/purchase-orders/1');
     expect(request.request.method).toBe('GET');
     expect(request.request.body).toBeNull();
     request.flush({ id: 1 });
@@ -53,7 +53,7 @@ describe('Purchase API route contract', () => {
     };
     let result: unknown;
     orders.create(payload).subscribe(order => result = order);
-    const request = http.expectOne('/api/purchase-orders');
+    const request = http.expectOne('http://localhost:5259/api/purchase-orders');
     expect(request.request.method).toBe('POST');
     expect(request.request.body).toEqual(payload);
     expect(request.request.detectContentTypeHeader()).toBe('application/json');
@@ -66,7 +66,7 @@ describe('Purchase API route contract', () => {
     let result: unknown;
     dashboard.load().subscribe(data => result = data);
     for (const route of ['latest-purchase-orders', 'oldest-purchase-order-items', 'item-quantities']) {
-      const request = http.expectOne('/api/dashboard/' + route);
+      const request = http.expectOne('http://localhost:5259/api/dashboard/' + route);
       expect(request.request.method).toBe('GET');
       expect(request.request.body).toBeNull();
       request.flush([]);

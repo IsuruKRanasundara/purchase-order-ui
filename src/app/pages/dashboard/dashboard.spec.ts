@@ -23,12 +23,12 @@ describe('Dashboard', () => {
   it('loads all three widgets from the dashboard API', () => {
     const http = TestBed.inject(HttpTestingController);
     http
-      .expectOne('/api/dashboard/latest-purchase-orders')
+      .expectOne('http://localhost:5259/api/dashboard/latest-purchase-orders')
       .flush([{ id: 1, netAmount: 10, numberOfItems: 1 }]);
     http
-      .expectOne('/api/dashboard/oldest-purchase-order-items')
+      .expectOne('http://localhost:5259/api/dashboard/oldest-purchase-order-items')
       .flush([{ purchaseOrderId: 1, itemName: 'Bolt', quantity: 2 }]);
-    http.expectOne('/api/dashboard/item-quantities').flush([{ itemName: 'Bolt', quantity: 2 }]);
+    http.expectOne('http://localhost:5259/api/dashboard/item-quantities').flush([{ itemName: 'Bolt', quantity: 2 }]);
     fixture.detectChanges();
     expect(component.loading()).toBe(false);
     expect(component.totalQuantity).toBe(2);
@@ -39,7 +39,7 @@ describe('Dashboard', () => {
   it('offers retry when the API is unavailable', () => {
     const http = TestBed.inject(HttpTestingController);
     http
-      .expectOne('/api/dashboard/latest-purchase-orders')
+      .expectOne('http://localhost:5259/api/dashboard/latest-purchase-orders')
       .flush({}, { status: 500, statusText: 'Server error' });
     fixture.detectChanges();
     expect(component.loading()).toBe(false);

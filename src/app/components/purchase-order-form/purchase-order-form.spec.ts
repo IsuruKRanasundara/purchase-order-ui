@@ -27,7 +27,7 @@ describe('PurchaseOrderForm', () => {
     });
     component.save();
     expect(component.form.invalid).toBe(true);
-    TestBed.inject(HttpTestingController).expectNone('/api/purchase-orders');
+    TestBed.inject(HttpTestingController).expectNone('http://localhost:5259/api/purchase-orders');
   });
 
   it('saves trimmed data once and clears the form after success', () => {
@@ -41,7 +41,7 @@ describe('PurchaseOrderForm', () => {
     component.save();
     component.save();
     const http = TestBed.inject(HttpTestingController);
-    const request = http.expectOne('/api/purchase-orders');
+    const request = http.expectOne('http://localhost:5259/api/purchase-orders');
     expect(request.request.method).toBe('POST');
     expect(request.request.body.supplierName).toBe('Acme');
     expect(request.request.body.items[0].itemName).toBe('Bolt');
@@ -59,7 +59,7 @@ describe('PurchaseOrderForm', () => {
     });
     component.save();
     TestBed.inject(HttpTestingController)
-      .expectOne('/api/purchase-orders')
+      .expectOne('http://localhost:5259/api/purchase-orders')
       .flush({}, { status: 500, statusText: 'Server error' });
     expect(component.error()).toContain('try again');
     expect(component.form.enabled).toBe(true);

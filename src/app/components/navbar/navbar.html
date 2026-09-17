@@ -1,1 +1,16 @@
-<p>navbar works!</p>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="topbar">
+  <a class="brand" routerLink="/dashboard"><span class="brand-symbol">&raquo;</span> eZuite</a
+  ><span class="header-label">Purchase management</span
+  ><span class="organization">My Organization <span class="avatar">PO</span></span>
+</header>
+<aside class="sidebar">
+  <nav aria-label="Main navigation">
+    <a routerLink="/dashboard" routerLinkActive="active"
+      ><span aria-hidden="true">&#9638;</span>Dashboard</a
+    ><a routerLink="/purchase-orders/new" routerLinkActive="active"
+      ><span aria-hidden="true">+</span>New order</a
+    >
+  </nav>
+  <span class="sidebar-footer">V 1.0<br />eZuite</span>
+</aside>

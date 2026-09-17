@@ -1,0 +1,60 @@
+.card {
+  min-height: 460px;
+}
+.order-items {
+  list-style: none;
+  padding: 0 22px;
+  margin: 0;
+  max-height: 580px;
+  overflow: auto;
+}
+.order-items li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 0;
+  border-bottom: 1px solid #edf0f4;
+}
+.order-items li:last-child {
+  border: 0;
+}
+.package-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 36px;
+  border-radius: 8px;
+  background: #f0f7fb;
+  color: #168cbc;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.item-info {
+  min-width: 0;
+}
+.item-info h3 {
+  font-size: 12px;
+  margin: 0 0 6px;
+  overflow-wrap: anywhere;
+}
+.item-info p {
+  font-size: 10px;
+  color: #8a94a2;
+  margin: 0;
+}
+.item-info p span {
+  color: #167bb6;
+}
+.quantity {
+  margin-left: auto;
+  font-size: 14px;
+  font-weight: 650;
+  text-align: right;
+}
+.quantity span {
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  color: #8a94a2;
+  margin-top: 4px;
+}

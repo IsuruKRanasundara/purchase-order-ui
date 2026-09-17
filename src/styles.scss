@@ -1,1 +1,261 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: #f7f9fc;
+  color: #344359;
+  font-family: Inter, 'Segoe UI', Arial, sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+button,
+input,
+textarea {
+  font: inherit;
+}
+button,
+a,
+input,
+textarea {
+  outline-offset: 4px;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+main {
+  margin-left: 84px;
+  padding: 34px 30px 50px;
+  max-width: 1800px;
+}
+h1 {
+  font-size: 27px;
+  font-weight: 650;
+  letter-spacing: -0.8px;
+  margin: 10px 0;
+}
+p {
+  line-height: 1.6;
+}
+.eyebrow {
+  color: #8a97aa;
+  letter-spacing: 1.5px;
+  font-size: 9px;
+  font-weight: 600;
+}
+.page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.page-heading p {
+  font-size: 12px;
+  color: #8390a3;
+  margin: 0;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 6px;
+  padding: 11px 16px;
+  border: 1px solid #dce4ee;
+  background: white;
+  color: #53637a;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.primary {
+  background: #087fc2;
+  color: white;
+  border-color: #087fc2;
+  box-shadow: 0 3px 7px #0a75b319;
+}
+.primary:hover {
+  background: #066ca6;
+}
+.subtle {
+  padding: 7px 11px;
+  font-size: 11px;
+}
+.muted {
+  color: #8a97aa;
+}
+.card {
+  background: white;
+  border: 1px solid #e1e6ed;
+  border-radius: 11px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px #223c5a02;
+}
+.card-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 22px;
+  border-bottom: 1px solid #eef1f5;
+}
+.card-heading h2 {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+.card-heading p {
+  font-size: 10px;
+  color: #8a97aa;
+  margin: 7px 0 0;
+}
+.count-badge {
+  font-size: 11px;
+  background: #eaf6fc;
+  color: #0886bb;
+  min-width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+}
+.table-scroll {
+  overflow: auto;
+  padding: 14px 20px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 12px;
+  white-space: nowrap;
+}
+th {
+  color: #1388c0;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 14px 10px;
+}
+td {
+  padding: 17px 10px;
+  border-top: 1px solid #edf0f4;
+}
+tbody tr:nth-child(odd) {
+  background: #f8fafc;
+}
+.numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.card-footer {
+  padding: 16px 22px;
+  font-size: 10px;
+  color: #95a0ae;
+  border-top: 1px solid #eef1f5;
+}
+.empty-state {
+  text-align: center;
+  padding: 40px 24px;
+  color: #91a0b2;
+}
+.empty-state h3 {
+  font-size: 13px;
+  color: #53647b;
+  font-weight: 500;
+}
+.empty-state p {
+  font-size: 11px;
+}
+.empty-icon {
+  font-size: 35px;
+  color: #97bfda;
+}
+.text-button {
+  color: #0785c1;
+  text-decoration: none;
+  font-size: 12px;
+  background: none;
+  border: 0;
+  padding: 4px;
+}
+.notice {
+  padding: 15px 18px;
+  border-radius: 7px;
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 20px 0;
+}
+.error {
+  background: #fff1f1;
+  color: #a13838;
+  border: 1px solid #f1d3d3;
+}
+.success {
+  background: #edf9f4;
+  color: #21694c;
+  border: 1px solid #cce9dd;
+}
+.loading-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 100px 20px;
+  background: white;
+  border: 1px solid #e1e6ed;
+  border-radius: 10px;
+  color: #8390a3;
+  font-size: 13px;
+}
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #dceaf2;
+  border-top-color: #0785c1;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
+}
+@media (max-width: 750px) {
+  main {
+    padding: 24px 18px;
+  }
+  .page-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  h1 {
+    font-size: 24px;
+  }
+}
+@media (max-width: 600px) {
+  main {
+    margin-left: 66px;
+    padding: 24px 12px;
+  }
+  .card-heading {
+    padding: 18px;
+  }
+  .table-scroll {
+    padding: 10px;
+  }
+}

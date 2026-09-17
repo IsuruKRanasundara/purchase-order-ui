@@ -1,1 +1,158 @@
-<p>purchase-order-form works!</p>
+<section class="page-heading">
+  <div>
+    <div class="eyebrow">WORKSPACE / PURCHASE ORDERS</div>
+    <h1>Create purchase order</h1>
+    <p>Add a supplier and items to create your next order.</p>
+  </div>
+  <a class="button" routerLink="/dashboard">&larr; Back to dashboard</a>
+</section>
+@if (savedId() !== null) {
+  <div role="status" class="notice success">
+    Purchase order #{{ savedId() }} saved successfully.
+    <a routerLink="/dashboard" class="text-button">View dashboard &rarr;</a>
+  </div>
+}
+@if (error()) {
+  <div role="alert" class="notice error">{{ error() }}</div>
+}
+<form [formGroup]="form" (ngSubmit)="save()" class="order-form">
+  <section class="card">
+    <header class="card-heading">
+      <div>
+        <h2>Order details</h2>
+        <p>Fields marked * are required.</p>
+      </div>
+      <span class="step">01</span>
+    </header>
+    <div class="details-grid">
+      <label
+        >Supplier name *<input
+          formControlName="supplierName"
+          maxlength="200"
+          placeholder="Enter supplier name"
+          autocomplete="organization"
+          [attr.aria-invalid]="
+            form.controls.supplierName.touched && form.controls.supplierName.invalid
+          "
+          aria-describedby="supplier-error"
+        />
+        @if (form.controls.supplierName.touched && form.controls.supplierName.invalid) {
+          <small id="supplier-error" class="field-error"
+            >Enter a supplier name (up to 200 characters).</small
+          >
+        }</label
+      ><label
+        >Order date *<input
+          type="date"
+          formControlName="orderDate"
+          aria-describedby="date-error"
+          [attr.aria-invalid]="form.controls.orderDate.touched && form.controls.orderDate.invalid"
+        />
+        @if (form.controls.orderDate.touched && form.controls.orderDate.invalid) {
+          <small id="date-error" class="field-error">Enter a valid order date.</small>
+        }</label
+      ><label class="notes"
+        >Notes <span class="muted">(optional)</span
+        ><textarea
+          rows="3"
+          maxlength="2000"
+          formControlName="notes"
+          placeholder="Add any details about this order..."
+        ></textarea>
+      </label>
+    </div>
+  </section>
+  <section class="card">
+    <header class="card-heading">
+      <div>
+        <h2>Order items</h2>
+        <p>Add item names, quantities, and unit prices.</p>
+      </div>
+      <span class="count-badge">{{ items.length }}</span>
+    </header>
+    <div formArrayName="items" class="line-items">
+      @for (item of items.controls; track item; let i = $index) {
+        <div class="item-row" [formGroupName]="i">
+          <label class="item-name"
+            >Item name *<input
+              formControlName="itemName"
+              maxlength="200"
+              placeholder="e.g. Steel frame assembly"
+              [attr.aria-label]="'Item ' + (i + 1) + ' name'"
+              [attr.aria-invalid]="
+                item.controls.itemName.touched && item.controls.itemName.invalid
+              " /></label
+          ><label
+            >Quantity *<input
+              type="number"
+              min="1"
+              max="1000000"
+              step="1"
+              formControlName="quantity"
+              [attr.aria-label]="'Item ' + (i + 1) + ' quantity'"
+              [attr.aria-invalid]="
+                item.controls.quantity.touched && item.controls.quantity.invalid
+              " /></label
+          ><label
+            >Unit price *<input
+              type="number"
+              min="0"
+              max="1000000"
+              step="0.01"
+              formControlName="unitPrice"
+              [attr.aria-label]="'Item ' + (i + 1) + ' unit price'"
+              [attr.aria-invalid]="
+                item.controls.unitPrice.touched && item.controls.unitPrice.invalid
+              "
+          /></label>
+          <div class="line-total">
+            <span>Line total</span
+            ><strong>{{
+              lineTotal(item.controls.quantity.value, item.controls.unitPrice.value)
+                | number: '1.2-2'
+            }}</strong>
+          </div>
+          <button
+            class="remove"
+            type="button"
+            (click)="removeItem(i)"
+            [disabled]="items.length === 1 || saving()"
+            [attr.aria-label]="'Remove item ' + (i + 1)"
+          >
+            &times;
+          </button>
+          @if (item.touched && item.invalid) {
+            <small class="field-error row-error"
+              >Enter an item name, a whole quantity from 1 to 1,000,000, and a price from 0 to
+              1,000,000 with up to two decimal places.</small
+            >
+          }
+        </div>
+      }
+    </div>
+    <div class="items-footer">
+      <button
+        type="button"
+        class="button subtle"
+        (click)="addItem()"
+        [disabled]="saving() || items.length >= 500"
+      >
+        + Add item
+      </button>
+      <div class="net-total">
+        <span>Net amount</span><strong>{{ total | number: '1.2-2' }}</strong
+        ><small>Sum of all order items</small>
+      </div>
+    </div>
+  </section>
+  @if (submitted && form.invalid) {
+    <p class="field-error" role="alert">Please correct the highlighted fields before saving.</p>
+  }
+  <div class="form-actions">
+    <span class="muted"
+      >{{ items.length }} {{ items.length === 1 ? 'item' : 'items' }} in this order</span
+    ><button type="submit" class="button primary" [disabled]="saving()">
+      {{ saving() ? 'Saving order...' : 'Save purchase order' }}
+    </button>
+  </div>
+</form>

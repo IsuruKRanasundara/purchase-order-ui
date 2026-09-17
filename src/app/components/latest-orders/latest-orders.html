@@ -1,1 +1,43 @@
-<p>latest-orders works!</p>
+<section class="card">
+  <header class="card-heading">
+    <div>
+      <h2>Latest purchase orders</h2>
+      <p>Your 5 most recently added orders</p>
+    </div>
+    <span class="count-badge">{{ orders().length }}</span>
+  </header>
+  @if (orders().length) {
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Order ID</th>
+            <th scope="col" class="numeric">Net amount</th>
+            <th scope="col" class="numeric">No. of items</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (order of orders(); track order.id) {
+            <tr>
+              <td>
+                <span class="order-id">#{{ order.id.toString().padStart(4, '0') }}</span>
+              </td>
+              <td class="numeric amount">{{ order.netAmount | number: '1.2-2' }}</td>
+              <td class="numeric">
+                <span class="item-count">{{ order.numberOfItems }}</span>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <footer class="card-footer">Ordered by date added &middot; Newest first</footer>
+  } @else {
+    <div class="empty-state">
+      <span class="empty-icon" aria-hidden="true">&#9671;</span>
+      <h3>No purchase orders yet</h3>
+      <p>Create your first order to see it here.</p>
+      <a routerLink="/purchase-orders/new" class="text-button">Create an order &rarr;</a>
+    </div>
+  }
+</section>

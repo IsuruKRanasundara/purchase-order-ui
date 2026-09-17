@@ -1,1 +1,41 @@
-<p>dashboard works!</p>
+<section class="page-heading">
+  <div>
+    <div class="eyebrow">WORKSPACE / OVERVIEW</div>
+    <h1>Purchase dashboard</h1>
+    <p>Your purchase orders, all in one place.</p>
+  </div>
+  <a class="button primary" routerLink="/purchase-orders/new"
+    ><span aria-hidden="true">+</span> Create purchase order</a
+  >
+</section>
+<div class="overview-strip">
+  <span><span class="live-dot"></span> Procurement overview</span>
+  <div>
+    <span class="muted">{{ updated() ? 'Updated at ' + updated() : 'Live purchase data' }}</span
+    ><button class="button subtle" (click)="refresh()" [disabled]="loading()">
+      {{ loading() ? 'Refreshing...' : 'Refresh' }}
+    </button>
+  </div>
+</div>
+@if (error()) {
+  <div class="notice error" role="alert">
+    {{ error() }} <button class="text-button" (click)="refresh()">Try again</button>
+  </div>
+}
+@if (loading()) {
+  <div class="loading-panel" role="status">
+    <span class="spinner"></span> Loading your purchase overview...
+  </div>
+} @else if (!error()) {
+  <div class="widgets">
+    <app-latest-orders [orders]="latest()" /><app-oldest-order-items
+      [items]="oldest()"
+    /><app-item-donut-chart [items]="quantities()" />
+  </div>
+  <div class="dashboard-footnote">
+    <span
+      >{{ latest().length }} recent orders &middot; {{ quantities().length }} unique items &middot;
+      {{ totalQuantity | number }} total units</span
+    ><span>Connected to your purchase order API</span>
+  </div>
+}

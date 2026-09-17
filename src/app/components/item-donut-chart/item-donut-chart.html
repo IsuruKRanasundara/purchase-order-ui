@@ -1,1 +1,44 @@
-<p>item-donut-chart works!</p>
+<section class="card">
+  <header class="card-heading">
+    <div>
+      <h2>Item quantities</h2>
+      <p>All items, grouped by item name</p>
+    </div>
+    <span class="period-tag">All time</span>
+  </header>
+  @if (total() > 0) {
+    <div class="chart-wrap">
+      <div
+        class="donut"
+        [style.background]="gradient()"
+        role="img"
+        [attr.aria-label]="
+          'Item quantity distribution: ' + total() + ' total units. Breakdown listed below.'
+        "
+      >
+        <div class="donut-center">
+          <strong>{{ total() | number }}</strong
+          ><span>Total units</span>
+        </div>
+      </div>
+    </div>
+    <ul class="legend">
+      @for (item of items(); track item.itemName) {
+        <li>
+          <span class="legend-dot" [style.background]="colors[$index % colors.length]"></span
+          ><span class="legend-name"
+            >{{ item.itemName
+            }}<small>{{ (item.quantity / total()) * 100 | number: '1.0-1' }}% of total</small></span
+          ><strong>{{ item.quantity | number }}</strong>
+        </li>
+      }
+    </ul>
+    <footer class="card-footer">{{ items().length }} unique items across all orders</footer>
+  } @else {
+    <div class="empty-state">
+      <div class="empty-ring" aria-hidden="true"></div>
+      <h3>No quantities to display</h3>
+      <p>Add items to an order to build your breakdown.</p>
+    </div>
+  }
+</section>

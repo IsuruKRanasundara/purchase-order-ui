@@ -1,0 +1,79 @@
+.card {
+  min-height: 460px;
+}
+.period-tag {
+  font-size: 10px;
+  color: #0087bf;
+  white-space: nowrap;
+}
+.chart-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 26px 20px 20px;
+}
+.donut {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  padding: 30px;
+  display: grid;
+  place-items: center;
+}
+.donut-center {
+  background: white;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.donut-center strong {
+  font-size: 25px;
+  letter-spacing: -1px;
+}
+.donut-center span {
+  color: #8a94a2;
+  font-size: 11px;
+  margin-top: 5px;
+}
+.legend {
+  list-style: none;
+  margin: 0;
+  padding: 0 24px 20px;
+  max-height: 300px;
+  overflow: auto;
+}
+.legend li {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 12px;
+}
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+.legend-name {
+  overflow-wrap: anywhere;
+}
+.legend small {
+  display: block;
+  color: #95a0ae;
+  font-size: 10px;
+  margin-top: 4px;
+}
+.legend strong {
+  margin-left: auto;
+}
+.empty-ring {
+  height: 140px;
+  width: 140px;
+  border: 24px solid #edf3f7;
+  border-radius: 50%;
+  margin: 0 auto 25px;
+}

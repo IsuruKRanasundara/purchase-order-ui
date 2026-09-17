@@ -1,0 +1,144 @@
+.order-form {
+  max-width: 1100px;
+  margin: 28px auto 0;
+}
+.order-form .card {
+  margin-bottom: 22px;
+}
+.step {
+  font-size: 20px;
+  font-weight: 650;
+  color: #d5e4ef;
+}
+.details-grid {
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  font-size: 11px;
+  font-weight: 500;
+}
+.notes {
+  grid-column: 1/-1;
+}
+input,
+textarea {
+  border: 1px solid #dce3ed;
+  background: #fcfdff;
+  border-radius: 5px;
+  padding: 11px 12px;
+  color: #344359;
+  width: 100%;
+  font-size: 12px;
+}
+textarea {
+  resize: vertical;
+}
+input:focus,
+textarea:focus {
+  outline: 2px solid #7ec7e7;
+  border-color: #0489c3;
+}
+input[aria-invalid='true'] {
+  border-color: #cb6969;
+}
+input::placeholder,
+textarea::placeholder {
+  color: #a1abba;
+}
+.line-items {
+  padding: 0 24px;
+}
+.item-row {
+  display: grid;
+  grid-template-columns: minmax(160px, 2.5fr) minmax(85px, 0.8fr) minmax(100px, 1fr) minmax(
+      100px,
+      1fr
+    ) 30px;
+  gap: 16px;
+  align-items: end;
+  padding: 22px 0;
+  border-bottom: 1px solid #edf0f4;
+}
+.line-total {
+  text-align: right;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 11px;
+  padding: 0 0 11px;
+}
+.line-total strong {
+  font-size: 13px;
+}
+.remove {
+  height: 38px;
+  border: 0;
+  background: transparent;
+  color: #a77676;
+  font-size: 22px;
+}
+.remove:disabled {
+  cursor: default;
+}
+.items-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding: 22px 24px;
+}
+.net-total {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.net-total span {
+  font-size: 12px;
+}
+.net-total strong {
+  font-size: 25px;
+  color: #087eb8;
+}
+.net-total small {
+  color: #95a0ae;
+  font-size: 10px;
+}
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+}
+.field-error {
+  color: #b33e3e;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.row-error {
+  grid-column: 1/-1;
+}
+@media (max-width: 850px) {
+  .item-row {
+    grid-template-columns: 1fr 1fr 30px;
+  }
+  .item-name {
+    grid-column: 1/-1;
+  }
+  .line-total {
+    grid-column: 1/3;
+    align-self: center;
+    text-align: left;
+    gap: 10px;
+  }
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+}

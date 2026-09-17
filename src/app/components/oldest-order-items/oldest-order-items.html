@@ -1,1 +1,32 @@
-<p>oldest-order-items works!</p>
+<section class="card">
+  <header class="card-heading">
+    <div>
+      <h2>Oldest order items</h2>
+      <p>Your 10 earliest purchase order items</p>
+    </div>
+    <span class="count-badge">{{ items().length }}</span>
+  </header>
+  @if (items().length) {
+    <ol class="order-items">
+      @for (item of items(); track $index) {
+        <li>
+          <span class="package-icon" aria-hidden="true">&#9671;</span>
+          <div class="item-info">
+            <h3>{{ item.itemName }}</h3>
+            <p>
+              Purchase order <span>#{{ item.purchaseOrderId.toString().padStart(4, '0') }}</span>
+            </p>
+          </div>
+          <div class="quantity">{{ item.quantity | number }}<span>units</span></div>
+        </li>
+      }
+    </ol>
+    <footer class="card-footer">Ordered by date added &middot; Oldest first</footer>
+  } @else {
+    <div class="empty-state">
+      <span class="empty-icon" aria-hidden="true">&#9671;</span>
+      <h3>No order items yet</h3>
+      <p>Items from your first order will appear here.</p>
+    </div>
+  }
+</section>
